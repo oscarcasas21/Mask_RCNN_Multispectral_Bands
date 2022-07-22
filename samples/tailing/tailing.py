@@ -37,8 +37,7 @@ import tifffile
 import cv2
 
 # Root directory of the project
-ROOT_DIR = os.path.abspath("../../")
-
+ROOT_DIR = os.path.abspath("../Mask_RCNN_Multispectral_Bands")
 # Import Mask RCNN
 sys.path.append(ROOT_DIR)  # To find local version of the library
 from mrcnn.config import Config
@@ -111,7 +110,7 @@ class TailingDataset(utils.Dataset):
         # }
         # We mostly care about the x and y coordinates of each region
         # Note: In VIA 2.0, regions was changed from a dict to a list.
-        annotations = json.load(open(os.path.join(dataset_dir, "Images/_annotations.coco.json")))
+        annotations = json.load(open(os.path.join(dataset_dir, "Images/train/via_export_json.json")))
         annotations = list(annotations.values())  # don't need the dict keys
 
         # Add images
@@ -178,12 +177,12 @@ def train(model):
     """Train the model."""
     # Training dataset.
     dataset_train = TailingDataset()
-    dataset_train.load_tailing("D:/MaskRCNN-main/dataset", "train")
+    dataset_train.load_tailing("samples/tailing/Images/", "train")
     dataset_train.prepare()
 
     # Validation dataset
     dataset_val = TailingDataset()
-    dataset_val.load_tailing("D:/MaskRCNN-main/dataset", "val")
+    dataset_val.load_tailing("samples/tailing/Images/", "val")
     dataset_val.prepare()
 
     # *** This training schedule is an example. Update to your needs ***
