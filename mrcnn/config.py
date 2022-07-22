@@ -52,7 +52,7 @@ class Config(object):
     # You can also provide a callable that should have the signature
     # of model.resnet_graph. If you do so, you need to supply a callable
     # to COMPUTE_BACKBONE_SHAPE as well
-    BACKBONE = "resnet101"
+    BACKBONE = "resnet50"
 
     # Only useful if you supply a callable to BACKBONE. Should compute
     # the shape of each layer of the FPN Pyramid.
@@ -95,7 +95,7 @@ class Config(object):
     PRE_NMS_LIMIT = 6000
 
     # ROIs kept after non-maximum suppression (training and inference)
-    POST_NMS_ROIS_TRAINING = 2000
+    POST_NMS_ROIS_TRAINING = 500
     POST_NMS_ROIS_INFERENCE = 1000
 
     # If enabled, resizes instance masks to a smaller size to reduce
@@ -158,7 +158,7 @@ class Config(object):
     MASK_SHAPE = [28, 28]
 
     # Maximum number of ground truth instances to use in one image
-    MAX_GT_INSTANCES = 100
+    MAX_GT_INSTANCES = 50
 
     # Bounding box refinement standard deviation for RPN and final detections.
     RPN_BBOX_STD_DEV = np.array([0.1, 0.1, 0.2, 0.2])
